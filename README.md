@@ -23,8 +23,13 @@ Confirm installation with: <br>
 <li> node -v </li><br>
 <li>npm -v </li><br>
 
-Then: 
-<li>Run 'npm test' (2 tests should be failing and 1 should be passing)</li><br>
+Run tests: 
+<li>npm test</li><br>
+2 tests should be failing and 1 should be passing<br>
+
+Run application:
+<li>npm start</li><br>
+Note: You will not need to run the application for the workshop, you will only be changing and running tests
 
 
 <h3>To Do's & Reminders</h3>
