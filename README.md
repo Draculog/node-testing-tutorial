@@ -10,7 +10,7 @@ You should also be familiar with basic JavaScript, RESTful APIs, and CRUD operat
 
 <h3>Setting Up Your Environment in Visual Studio Code </h3> 
 <li>Download the project files or clone the repository</li>
-<pre><li>To clone via Git: <b>git clone *link here* </li></pre>
+<pre><li>To clone via Git: <b>git clone https://github.com/Draculog/node-testing-tutorial.git</li></pre>
 <li>Open project in VSCode </li><br>
 
 <h3>Steps to run:</h3>
