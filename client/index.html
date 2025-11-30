@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Tasks</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav>
+        <a href="add.html">Add</a>
+    </nav>
+
+
+    <h1>Welcome to My Tasks</h1>
+    
+    <!-- <div id="content">
+        <p>Your one-stop solution for managing tasks!</p>
+    </div> -->
+
+    <h3>Edit Existing Tasks Below</h3>
+
+    <br>
+    <div id = "container">
+        <div id="taskList"></div>
+    </div>
+
+    <!-- <div id="content">
+        <p>Disclaimer: Site may be buggy</p>
+    </div> -->
+
+
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3 id="modalHeader">Edit Task</h3>
+            <form id="editTaskForm">
+                <label for="editTask">Task Description:</label>
+                <input type="text" id="editTask" name="description"><br>
+
+                <label for="completionDate">Completion Date:</label>
+                <input type="date" id="completionDate" name="completion_date"><br>
+
+                <button type="submit">Save Changes</button>
+            </form>
+        </div>
+    </div>
+    
+    <script>
+        //Open modal when edit button is clicked 
+        async function openModal(id, description, completion_date){
+            const modal = document.getElementById("editModal");
+            const descriptionInput = document.getElementById("editDescription");
+            const dateInput = document.getElementById("editDate");
+
+            descriptionInput.value = description; 
+            dateInput.value = completion_date;
+
+            modal.style.display = "block";
+
+            document.getElementById("saveBtn").onclick = async function (){
+                const newDescription = descriptionInput.value;
+                const newDate = document.getElementById("completionDate").value;
+                
+                await editTask({description: taskDescription, completion_date: completionDate});
+
+                document.getElementById("addTask").value = '';
+
+            };
+        }
+
+        async function editTask(id, description, completion_date) {
+            document.getElementById("editTask").value = description;
+            document.getElementById("completionDate").value = completion_date;
+            const modal = document.getElementById("editModal");
+            // Show the modal
+            modal.style.display = "block";
+
+            // Handle the form submission
+            document.getElementById("editTaskForm").onsubmit = async function (e) {
+                e.preventDefault();  // Prevent page refresh
+                const newDescription = document.getElementById("editTask").value;
+                const newCompletionDate = document.getElementById("completionDate").value;
+
+                const response = await fetch(`/tasks/${id}`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ description: newDescription, completion_date: newCompletionDate })
+                });
+
+                if (!response.ok) {
+                    console.error('Error updating task');
+                    return;
+                }
+
+                console.log(`Task ${id} updated`);
+                modal.style.display = "none";  // Close modal after submission
+                location.reload();  // Reload the page to show the updated task list
+            };
+        }
+        
+        // Remove a task from the list
+        async function deleteTask(id) {
+            const response = await fetch(`/tasks/${id}`, {method: 'DELETE'});
+
+            if (!response.ok) {
+                console.error('Error deleting task');
+                return;
+            }
+
+            console.log(`Task ${id} deleted`);
+            location.reload();
+        }
+    </script>
+    
+    <script src="edit.js" type = "module"></script>
+</body>
+</html>
