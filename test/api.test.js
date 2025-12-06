@@ -89,7 +89,7 @@ describe('Tasks API', function () {
   
 
     // TODO 
-    // Step 3) Get the Task object from the database and store it in a variable called getResponse
+    // Step 3) Get the Task object from the database and store it in a variable called getData
     // Hint: Look at previous tests to see how to call the route that gets a specific task from the database
 
 
