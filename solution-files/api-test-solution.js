@@ -38,7 +38,7 @@ describe('Tasks API', function () {
     const task = { description: 'Learn testing', completion_date: '2025-12-31' };
     
 
-    // Step 2) Add the task object to the database and store the response object and its database ID in variables
+    // Step 2) Add the task object to the database and store the data object and its database ID in variables
     const postUrl = `http://127.0.0.1:3000/tasks`;
     const postResponse = await fetch(postUrl, {
       method: 'POST',
@@ -96,7 +96,7 @@ describe('Tasks API', function () {
   
 
     // TODO 
-    // Step 3) Get the Task object from the database and store it in a variable called getResponse
+    // Step 3) Get the Task object from the database and store it in a variable called getData
     // Hint: Look at previous tests to see how to call the route that gets a specific task from the database
     const getUrl = `http://127.0.0.1:3000/tasks/${id}`;
     const getResponse = await fetch(getUrl);
@@ -154,7 +154,7 @@ describe('Tasks API', function () {
     // TODO
     // Step 4) Assert that the task is deleted from the database
     // Hint: Do another GET request using the ID of the task you deleted,
-    // keep the response in a variable, and assert its body to a value that indicates it does not exist
+    // keep the data in a variable, and assert its body to a value that indicates it does not exist
     const emptyUrl = `http://127.0.0.1:3000/tasks/${id}`;
     const emptyResponse = await fetch(emptyUrl)
     const emptyData = await emptyResponse.json();
